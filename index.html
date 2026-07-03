@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oven Secret — Cakes that speak for themselves.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--bg-card:#141414;--bg-card-hover:#1a1a1a;
+  --border:rgba(255,255,255,0.06);--text:#f0f0f0;
+  --text-secondary:#a0a0a0;--text-muted:#666;
+  --accent:#f97316;--accent-dark:#ea580c;--accent-glow:rgba(249,115,22,0.15);
+  --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --radius:12px;--max-w:1120px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;background:rgba(10,10,10,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:18px;font-weight:800;letter-spacing:-0.5px;color:var(--accent);white-space:nowrap}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{color:var(--text-secondary);font-size:14px;font-weight:500;transition:color 0.2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--accent);color:#000!important;padding:10px 20px;border-radius:8px;font-weight:600;font-size:14px;transition:background 0.2s}
+.nav-cta:hover{background:var(--accent-dark)}
+.nav-mobile{display:none;background:none;border:none;color:var(--text);cursor:pointer}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:120px 24px 80px;text-align:center}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1400&q=80') center/cover;opacity:0.25}
+.hero-content{position:relative;z-index:1;max-width:700px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--accent-glow);border:1px solid rgba(255,255,255,0.08);padding:8px 16px;border-radius:100px;font-size:13px;font-weight:600;color:var(--accent);margin-bottom:28px}
+.hero h1{font-size:clamp(38px,7vw,72px);font-weight:900;line-height:1.05;letter-spacing:-2px;margin-bottom:20px}
+.hero h1 .accent{color:var(--accent)}
+.hero p{font-size:18px;color:var(--text-secondary);max-width:500px;margin:0 auto 36px;line-height:1.7}
+.hero-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:#000;padding:14px 32px;border-radius:10px;font-weight:700;font-size:16px;transition:all 0.2s;border:none;cursor:pointer;display:inline-block}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.btn-secondary{background:var(--bg-card);color:var(--text);padding:14px 32px;border-radius:10px;font-weight:600;font-size:16px;border:1px solid var(--border);transition:all 0.2s;display:inline-block}
+.btn-secondary:hover{background:var(--bg-card-hover);border-color:var(--text-muted)}
+
+/* SECTIONS */
+section{padding:100px 24px}
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:12px}
+.section-title{font-size:clamp(26px,4.5vw,42px);font-weight:800;letter-spacing:-1px;line-height:1.15;margin-bottom:16px}
+.section-desc{font-size:16px;color:var(--text-secondary);max-width:520px;line-height:1.7}
+.section-header{margin-bottom:56px}
+
+/* ABOUT */
+.about-grid{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius)}
+
+/* SERVICES */
+.svc-grid{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.svc-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:all 0.3s;position:relative;overflow:hidden}
+.svc-card:hover{border-color:rgba(255,255,255,0.12);transform:translateY(-2px)}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);opacity:0;transition:opacity 0.3s}
+.svc-card:hover::before{opacity:1}
+.svc-icon{font-size:28px;margin-bottom:16px}
+.svc-card h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.svc-card p{font-size:13px;color:var(--text-muted);line-height:1.6}
+
+/* GALLERY */
+.gallery-grid{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.gallery-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:var(--radius);transition:transform 0.3s}
+.gallery-grid img:hover{transform:scale(1.03)}
+
+/* INFO */
+.info-grid{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.info-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;display:flex;gap:14px;align-items:flex-start}
+.info-icon{width:40px;height:40px;border-radius:10px;background:var(--accent-glow);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+.info-card h4{font-size:15px;font-weight:600;margin-bottom:2px}
+.info-card p{font-size:13px;color:var(--text-muted)}
+
+/* CTA */
+.cta-section{text-align:center;padding:100px 24px;background:linear-gradient(180deg,var(--bg) 0%,rgba(255,255,255,0.01) 50%,var(--bg) 100%)}
+.cta-section h2{font-size:clamp(30px,5vw,48px);font-weight:900;letter-spacing:-1.5px;margin-bottom:16px}
+.cta-section p{font-size:17px;color:var(--text-secondary);max-width:460px;margin:0 auto 36px;line-height:1.7}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:48px 24px}
+.footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px}
+.footer-brand p{font-size:13px;color:var(--text-muted);max-width:260px;line-height:1.7;margin-top:12px}
+.footer-col h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);margin-bottom:16px}
+.footer-col a{display:block;font-size:14px;color:var(--text-secondary);margin-bottom:10px;transition:color 0.2s}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{max-width:var(--max-w);margin:32px auto 0;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--text-muted);flex-wrap:wrap;gap:8px}
+.footer-bottom a{color:var(--accent)}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.fade-up:nth-child(2){transition-delay:0.1s}
+.fade-up:nth-child(3){transition-delay:0.2s}
+.fade-up:nth-child(4){transition-delay:0.3s}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-mobile{display:block}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:var(--bg);padding:24px;border-bottom:1px solid var(--border);gap:20px}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .about-img{aspect-ratio:16/10}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-inner{grid-template-columns:1fr;gap:32px}
+  .hero h1{letter-spacing:-1px}
+}
+@media(prefers-reduced-motion:reduce){.fade-up{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Oven Secret</div>
+  <div class="nav-links" id="navLinks">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+    <a href="https://instagram.com/ovensecret" class="nav-cta" target="_blank">Follow Us</a>
+  </div>
+  <button class="nav-mobile" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">📍 Victoria Island, Lagos</div>
+    <h1>Cakes that speak for themselves.<br><span class="accent"></span></h1>
+    <p>Premium custom cakes and pastries in Victoria Island. Every cake is a statement of elegance and luxury.</p>
+    <div class="hero-buttons">
+      <a href="https://instagram.com/ovensecret" class="btn-primary" target="_blank">Book Now</a>
+      <a href="#services" class="btn-secondary">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-grid">
+    <div class="fade-up">
+      <img src="https://images.unsplash.com/photo-1486427944544-d2c246c4df38?w=800&q=80" alt="Oven Secret" class="about-img">
+    </div>
+    <div class="fade-up">
+      <div class="section-label">About Us</div>
+      <div class="section-title">We don't just do bakerys — we do them properly.</div>
+      <p class="section-desc">Premium custom cakes and pastries in Victoria Island. Every cake is a statement of elegance and luxury. Quality is non-negotiable, and every detail matters.</p>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div style="max-width:var(--max-w);margin:0 auto">
+    <div class="section-header fade-up">
+      <div class="section-label">What We Make</div>
+      <div class="section-title">Baked with love, finished with class</div>
+    </div>
+    <div class="svc-grid">
+      
+        <div class="svc-card fade-up">
+          <div class="svc-icon">🎂</div>
+          <h3>Custom Cakes</h3>
+          <p>Wedding, birthday, and celebration cakes.</p>
+        </div>
+        <div class="svc-card fade-up">
+          <div class="svc-icon">🧁</div>
+          <h3>Pastries</h3>
+          <p>Cookies, cupcakes, and brownies baked fresh.</p>
+        </div>
+        <div class="svc-card fade-up">
+          <div class="svc-icon">📦</div>
+          <h3>Event Orders</h3>
+          <p>Dessert tables and cake displays.</p>
+        </div>
+        <div class="svc-card fade-up">
+          <div class="svc-icon">🛵</div>
+          <h3>Island Delivery</h3>
+          <p>Same-day delivery across Victoria Island.</p>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div style="max-width:var(--max-w);margin:0 auto">
+    <div class="section-header fade-up">
+      <div class="section-label">Gallery</div>
+      <div class="section-title">See our work</div>
+    </div>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80" alt="Gallery 1" loading="lazy">
+<img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&q=80" alt="Gallery 2" loading="lazy">
+<img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&q=80" alt="Gallery 3" loading="lazy">
+<img src="https://images.unsplash.com/photo-1558636508-e0db3814bd1d?w=600&q=80" alt="Gallery 4" loading="lazy">
+
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div style="max-width:var(--max-w);margin:0 auto">
+    <div class="section-header fade-up">
+      <div class="section-label">Find Us</div>
+      <div class="section-title">Come visit</div>
+    </div>
+    <div class="info-grid">
+      <div class="info-card fade-up">
+        <div class="info-icon">📍</div>
+        <div>
+          <h4>Location</h4>
+          <p>Victoria Island, Lagos</p>
+        </div>
+      </div>
+      <div class="info-card fade-up">
+        <div class="info-icon">🕐</div>
+        <div>
+          <h4>Hours</h4>
+          <p>Mon – Sat: 9am – 7pm</p>
+        </div>
+      </div>
+      <div class="info-card fade-up">
+        <div class="info-icon">📞</div>
+        <div>
+          <h4>Contact</h4>
+          <p>+234 *** *** ****</p>
+        </div>
+      </div>
+      <div class="info-card fade-up">
+        <div class="info-icon">📸</div>
+        <div>
+          <h4>Instagram</h4>
+          <p><a href="https://instagram.com/ovensecret" target="_blank" style="color:var(--accent)">@ovensecret</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="fade-up">
+    <div class="section-label">Ready?</div>
+    <h2>See what Oven Secret could look like online.</h2>
+    <p>This is a mockup of what your website could be. Clean, modern, and built to bring in customers. Let's make it real.</p>
+    <div class="hero-buttons">
+      <a href="https://instagram.com/ovensecret" class="btn-primary" target="_blank">Message Us on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="nav-logo">Oven Secret</span>
+      <p>Cakes that speak for themselves.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="https://instagram.com/ovensecret" target="_blank">Instagram</a>
+      <a href="#contact">Contact Us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Oven Secret. All rights reserved.</span>
+    <span>Designed by <a href="https://starlight480.github.io/portfolio/" target="_blank">Dami</a></span>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+</script>
+</body>
+</html>
